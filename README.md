@@ -1,6 +1,10 @@
 # streamdeck-elite
 Elgato Stream Deck button plugin for Elite Dangerous
 
+> **Linux / StreamController:** a native Linux port is planned but not yet
+> implemented. See the [Linux support documentation](docs/README.md) for the
+> proposed architecture, runtime requirements, and porting plan.
+
 ![Elgato Stream Deck and Flight Instrument Panel](https://i.imgur.com/bE2ODlF.jpg)
 
 This plugin connects to Elite Dangerous, to get the on/off status for 14 different toggle-buttons, 
@@ -255,4 +259,3 @@ https://github.com/MagicMau/EliteJournalReader
 https://github.com/ishaaniMittal/inputsimulator
 
 https://nerdordie.com/product/stream-deck-key-icons/
-
