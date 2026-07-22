@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="960" viewBox="0 0 1440 960">
+  <rect width="1440" height="960" fill="#10141b"/>
+  <style>
+    .heading { fill: #f4f7fb; font: 700 34px sans-serif; }
+    .subheading { fill: #9ba7b8; font: 400 18px sans-serif; }
+    .label { fill: #f4f7fb; font: 700 20px sans-serif; text-anchor: middle; }
+    .note { fill: #9ba7b8; font: 400 15px sans-serif; text-anchor: middle; }
+    .tile { fill: #171d27; stroke-width: 8; }
+    .inner { fill: none; stroke: #2d3746; stroke-width: 4; }
+    .glyph { fill: none; stroke: #f4f7fb; stroke-width: 10; stroke-linecap: round; stroke-linejoin: round; }
+    .badge { fill: #10141b; stroke-width: 6; }
+    .rail-bg { fill: #293241; }
+  </style>
+
+  <text x="60" y="62" class="heading">Elite control icon visual language</text>
+  <text x="60" y="94" class="subheading">Interaction type is geometry and frame colour; runtime state is the bottom rail. Production icons contain no baked text.</text>
+
+  <!-- Toggle -->
+  <g transform="translate(60 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#00d1c7"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <path d="M55 64h70l13 27v42H42V91z"/>
+      <path d="M67 64V45h46v19M42 101h96M69 133v17M111 133v17"/>
+    </g>
+    <g transform="translate(22 22)">
+      <rect width="50" height="26" rx="13" class="badge" stroke="#00d1c7"/>
+      <circle cx="37" cy="13" r="8" fill="#00d1c7"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#52f28a"/>
+    <text x="90" y="215" class="label">Toggle</text>
+    <text x="90" y="240" class="note">persistent on/off</text>
+  </g>
+
+  <!-- Momentary -->
+  <g transform="translate(290 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#ffb020"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <path d="M87 43v38M61 55l19 31M113 55L94 86M51 92h72l-9 45H60z"/>
+      <path d="M71 108h32"/>
+    </g>
+    <g transform="translate(22 22)">
+      <circle cx="14" cy="14" r="12" class="badge" stroke="#ffb020"/>
+      <circle cx="14" cy="14" r="5" fill="#ffb020"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#8792a5"/>
+    <text x="90" y="215" class="label">Momentary</text>
+    <text x="90" y="240" class="note">one tap / pulse</text>
+  </g>
+
+  <!-- Hold -->
+  <g transform="translate(520 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#ff7a1a"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <path d="M90 42v78M61 91l29 29 29-29M54 139h72"/>
+    </g>
+    <g transform="translate(22 22)">
+      <rect width="34" height="30" rx="8" class="badge" stroke="#ff7a1a"/>
+      <rect x="8" y="7" width="6" height="16" rx="3" fill="#ff7a1a"/>
+      <rect x="20" y="7" width="6" height="16" rx="3" fill="#ff7a1a"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#ffb020"/>
+    <text x="90" y="215" class="label">Hold</text>
+    <text x="90" y="240" class="note">down until release</text>
+  </g>
+
+  <!-- Alarm -->
+  <g transform="translate(750 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#ff4757"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <path d="M90 43l50 91H40z"/>
+      <path d="M90 76v29M90 121h.1"/>
+    </g>
+    <g transform="translate(22 21)">
+      <path d="M15 1l14 27H1z" class="badge" stroke="#ff4757"/>
+      <circle cx="15" cy="20" r="3" fill="#ff4757"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#ff4757"/>
+    <text x="90" y="215" class="label">Alarm</text>
+    <text x="90" y="240" class="note">condition + action</text>
+  </g>
+
+  <!-- Stateful -->
+  <g transform="translate(980 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#3d8bff"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <circle cx="55" cy="120" r="12"/>
+      <circle cx="125" cy="55" r="12"/>
+      <path d="M64 111c21-8 30-38 52-47M91 88l20 4-4-20"/>
+    </g>
+    <g transform="translate(22 22)">
+      <path d="M15 0l15 15-15 15L0 15z" class="badge" stroke="#3d8bff"/>
+      <circle cx="15" cy="15" r="4" fill="#3d8bff"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#52f28a"/>
+    <text x="90" y="215" class="label">Stateful</text>
+    <text x="90" y="240" class="note">telemetry-aware</text>
+  </g>
+
+  <!-- Dial -->
+  <g transform="translate(1210 145)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#a66bff"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <g class="glyph">
+      <circle cx="90" cy="96" r="37"/>
+      <path d="M90 96l22-24M45 70c12-23 40-38 68-27M45 70l2-23M135 70c-12-23-40-38-68-27M135 70l-2-23"/>
+    </g>
+    <g transform="translate(20 20)">
+      <path d="M4 25a17 17 0 1 1 25 4M29 29v-12M29 29H17" class="badge" stroke="#a66bff"/>
+    </g>
+    <rect x="36" y="148" width="108" height="12" rx="6" class="rail-bg"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#8792a5"/>
+    <text x="90" y="215" class="label">Dial</text>
+    <text x="90" y="240" class="note">rotate / press / touch</text>
+  </g>
+
+  <text x="60" y="470" class="heading">Runtime state rail</text>
+  <text x="60" y="502" class="subheading">The function glyph and interaction marker stay fixed. Only the rail and optional state treatment change.</text>
+
+  <g transform="translate(130 550)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#00d1c7"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <path d="M55 64h70l13 27v42H42V91zM67 64V45h46v19M42 101h96" class="glyph"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#8792a5"/>
+    <text x="90" y="215" class="label">Ready / Off</text>
+  </g>
+  <g transform="translate(380 550)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#00d1c7"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <path d="M55 64h70l13 27v42H42V91zM67 64V45h46v19M42 101h96" class="glyph"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#52f28a"/>
+    <text x="90" y="215" class="label">Active / On</text>
+  </g>
+  <g transform="translate(630 550)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#ffb020"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <path d="M55 64h70l13 27v42H42V91zM67 64V45h46v19M42 101h96" class="glyph"/>
+    <path d="M128 36l23 41h-46zM128 51v11M128 69h.1" class="glyph" stroke="#ffb020"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#ffb020"/>
+    <text x="90" y="215" class="label">Warning</text>
+  </g>
+  <g transform="translate(880 550)">
+    <rect width="180" height="180" rx="34" fill="#151922" stroke="#596273" stroke-width="8"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <path d="M55 64h70l13 27v42H42V91zM67 64V45h46v19M42 101h96" fill="none" stroke="#697386" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M42 139L138 43" fill="none" stroke="#697386" stroke-width="9" stroke-linecap="round"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#596273"/>
+    <text x="90" y="215" class="label">Disabled</text>
+  </g>
+  <g transform="translate(1130 550)">
+    <rect width="180" height="180" rx="34" class="tile" stroke="#ff4757"/>
+    <rect x="15" y="15" width="150" height="150" rx="25" class="inner"/>
+    <path d="M55 64h70l13 27v42H42V91zM67 64V45h46v19M42 101h96" class="glyph"/>
+    <path d="M34 86h18l8-22 15 48 13-33 11 20h19" fill="none" stroke="#ff4757" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="36" y="148" width="108" height="12" rx="6" fill="#ff4757"/>
+    <text x="90" y="215" class="label">Alert</text>
+  </g>
+
+  <text x="720" y="910" class="subheading" text-anchor="middle">Original concept — reference artwork is not incorporated. Validate at 72 px before production.</text>
+</svg>

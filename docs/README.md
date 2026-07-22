@@ -20,6 +20,8 @@ Elgato SDK or Win32 input layer.
   Flatpak considerations, uinput, and troubleshooting expectations.
 - [Porting plan](porting-plan.md) — milestones, feature-parity matrix,
   acceptance criteria, risks, and decisions that must be made before release.
+- [Icon design system](icon-design.md) — proposed original visual language,
+  coverage, state semantics, and artwork provenance constraints.
 
 Repository-wide instructions for coding agents are in [`AGENTS.md`](../AGENTS.md).
 
@@ -68,3 +70,6 @@ notes whenever that baseline changes.
 - [Plugin-wide backend guide](https://streamcontroller.github.io/docs/latest/plugin_dev/modify_template/add_a_plugin_backend/)
 - [Plugin manifest guide](https://streamcontroller.github.io/docs/latest/plugin_dev/submitting/manifest/)
 - [Original streamdeck-elite repository](https://github.com/mhwlng/streamdeck-elite)
+- [MagicMau EliteJournalReader](https://github.com/MagicMau/EliteJournalReader)
+- [EDAssets catalogue](https://edassets.org/) and
+  [source repository](https://github.com/Venefilyn/EDAssets)

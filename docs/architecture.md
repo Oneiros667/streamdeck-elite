@@ -142,6 +142,49 @@ The backend should expose coarse operations such as `snapshot()`,
 `key_up(function)`. Do not expose file watchers or uinput objects over the
 process boundary.
 
+### Telemetry package boundary
+
+The vendored `EliteJournalReader` is a useful behavioural boundary, but it is a
+.NET Framework library rather than a dependency the Python plugin can consume.
+The Linux implementation should create one internal, StreamController-independent
+Python package under `backend/elite/telemetry/`. It should not add the upstream
+C# repository as a Git submodule or require a .NET process at runtime.
+
+One `TelemetryService` should own the `Status.json`, `Cargo.json`,
+`NavRoute.json`, and journal readers for the entire plugin. Its public boundary
+should provide lifecycle, an immutable `EliteSnapshot`, and per-source health;
+actions must not receive watcher objects or subscribe directly to raw journal
+events. The package must remain usable in fixture tests without StreamController,
+GTK, a physical deck, or Linux input access.
+
+Port only the telemetry needed by the actions. The current Windows projection
+uses companion-file status, cargo, and route data plus a narrow journal subset:
+location/system transitions, `FSDTarget`, `UnderAttack`, `Died`, and
+`NavRouteClear`. Unknown journal event names should remain valid input and be
+ignored or retained as generic records unless a reducer explicitly handles
+them. Do not reproduce the upstream reader's hundreds of event classes merely
+to match its class hierarchy.
+
+Preserve useful semantics rather than implementation details: initial companion
+reads, replay-before-live state reconstruction, byte-offset journal tailing,
+rotation handling, payload timestamp ordering, and retry of transient companion
+file rewrites. Replace reflection registration, mutable .NET event objects,
+unbounded joins, polling sleeps, and incidental redraw-on-any-event behaviour
+with explicit parsers, deterministic reducers, stoppable workers, and
+state-driven publication.
+
+Start with this package inside the plugin repository. Extracting a separately
+versioned Python distribution is justified only after a second consumer exists
+and the tested API is stable; until then it would add release and compatibility
+work without avoiding the Python port.
+
+The upstream EliteJournalReader is MIT-licensed and the local copy records its
+MagicMau origin. Some copied watcher helpers also cite EDCD/EDDI. Before deriving
+Python code from those implementations, audit and retain the applicable
+copyright/licence notices in `attribution.json`. Prefer the Elite journal and
+companion-file formats as the protocol authority and use the C# code as a
+behavioural reference.
+
 ## Proposed source layout
 
 StreamController store plugins require `manifest.json` in the repository root,
@@ -168,8 +211,12 @@ backend/
     bindings.py             StartPreset and .binds parsing
     binding_catalog.py      action ID -> Elite binding selector
     paths.py                manual configuration and discovery
-    telemetry.py            watchers and journal tailing
-    state.py                typed snapshot and state reducer
+    telemetry/
+      service.py            one owner and lifecycle for all telemetry sources
+      companion.py          Status, Cargo, and NavRoute snapshot readers
+      journal.py            replay, byte-offset tailing, and rotation
+      models.py             typed records, snapshot, and source health
+      reducer.py            deterministic records -> snapshot projection
     commands.py             action domain logic and serialization
     input.py                abstract sink plus Linux uinput implementation
     health.py               structured diagnostics

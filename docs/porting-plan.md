@@ -30,6 +30,10 @@ Status: **Not started**
 - pin the StreamController version and PluginTemplate commit;
 - decide the minimum supported Python and distribution environments;
 - record the input dependency and licence strategy;
+- audit the MagicMau EliteJournalReader and cited EDCD/EDDI provenance before
+  deriving Python telemetry code;
+- resolve EDAssets/CMDR SpyTec and Frontier permissions before deriving or
+  redistributing any EDAssets catalogue artwork;
 - audit every image and sound intended for the Linux package.
 
 Exit criteria: decisions are documented, root manifest metadata can be written,
@@ -55,14 +59,18 @@ shows a useful no-configuration state, and shuts down without orphan processes.
 Status: **Not started**
 
 - implement path validation and Steam/Proton discovery;
-- parse `Status.json` into a typed immutable snapshot;
-- tail/rotate journals and replay state without side effects;
-- add `Cargo.json` and `NavRoute.json` snapshot readers;
+- add an internal, StreamController-independent `backend/elite/telemetry`
+  package owned by the plugin-wide backend;
+- parse `Status.json`, `Cargo.json`, and `NavRoute.json` into typed records;
+- tail/rotate journals by byte offset and replay state without side effects;
+- decode only journal events required by the state projection while accepting
+  unknown event names safely;
 - add retry, stale-source health, and deterministic reducer fixtures;
 - port Toggle as a display-only action before enabling input.
 
 Exit criteria: a Toggle action follows recorded state transitions on a FakeDeck
-and shows degraded state when its source is missing or stale.
+and shows degraded state when its source is missing or stale; telemetry parser,
+reducer, replay, and health tests run without importing StreamController.
 
 ### M3 — Bindings and safe input
 
@@ -104,6 +112,7 @@ Status: **Not started**
 - FireGroup Dial;
 - custom images, GIF/video behaviour supported by StreamController, labels,
   colours, and alarm/pip overlays;
+- produce the approved original SVG icon system and generated raster sizes;
 - click/error audio with a Linux-compatible backend;
 - stacked action and multi-action behaviour.
 
@@ -125,6 +134,20 @@ Status: **Not started**
 
 Exit criteria: all promised rows in the feature matrix are Complete, known gaps
 are explicit, and store packaging installs from an immutable tested commit.
+
+## Recorded architecture decisions
+
+- **Telemetry implementation:** create a focused internal Python package; do not
+  add the C# EliteJournalReader as a Git submodule or runtime process.
+- **Telemetry scope:** port the companion readers and narrow journal projection
+  required by the actions, not the upstream reader's complete event hierarchy.
+- **Future extraction:** consider a separate Python distribution only after a
+  second consumer and a stable, fixture-tested API exist.
+- **Provenance:** retain MagicMau/Maurits Elbers MIT attribution for derived work
+  and resolve the cited EDCD/EDDI helper provenance before publishing it.
+- **Artwork sources:** use EDAssets and the added icon repository as semantic
+  research only; production icons are original SVGs unless explicit reusable
+  asset permissions are documented.
 
 ## Feature parity matrix
 
@@ -243,6 +266,8 @@ These decisions must be explicit before their related milestone begins:
 | DirectInput-to-Linux mapping errors | Wrong command reaches the game | Central explicit mapping, representative fixtures, opt-in host verification |
 | Key remains held | User loses keyboard control | Owner tokens, reverse release, `finally`, shutdown `release_all`, watchdog tests |
 | Journal/JSON partial writes | Flicker, crashes, false state | Bounded retry, last-valid snapshot, timestamps and source health |
+| Telemetry port loses upstream provenance | Release attribution is incomplete | Audit MagicMau and cited EDCD/EDDI code; record notices in `attribution.json` |
+| EDAssets software licence is mistaken for an asset licence | Frontier or artist imagery is redistributed without permission | Treat catalogue files as reference-only; resolve per-asset and Frontier terms or ship original artwork |
 | Store expects a focused plugin repository | Combined repo cannot publish cleanly | Validate early; publish a generated/dedicated Linux repository if necessary |
 | Reused asset has unclear licence | Release cannot legally include it | Audit before packaging; replace or omit uncertain assets |
 | Port duplicates large function lists | Drift between UI and execution | One central action/binding catalog with generated UI choices |
