@@ -30,6 +30,41 @@ Elite/Buttons/*  <---->  BarRaider / Elgato SDK
 WindowsInput + user32.dll ----> focused Elite Dangerous window
 ```
 
+### Verified Windows build output
+
+`Elite/Elite.csproj` is the Windows plugin project. It is a classic MSBuild
+project targeting .NET Framework 4.8 with `OutputType` set to `Exe` and assembly
+name `com.mhwlng.elite`. Its Release configuration targets x64 and writes the
+complete plugin payload to:
+
+```text
+Elite/bin/Release/com.mhwlng.elite.sdPlugin/
+```
+
+That directory contains `com.mhwlng.elite.exe`, the generated
+`com.mhwlng.elite.exe.config`, project and NuGet dependency assemblies, the
+Elgato manifest, layouts, runtime icons, property inspectors, and sounds. MSBuild
+copies the dependencies through project/assembly references and copies the
+declared runtime assets through `CopyToOutputDirectory`. Source-only example
+images, the PSD, package metadata, and Release PDB/XML files are not part of the
+payload. `Elite/manifest.json` selects the executable with `CodePath` set to
+`com.mhwlng.elite`.
+
+A downloaded copy of the upstream
+[v2.7.4 release](https://github.com/mhwlng/streamdeck-elite/releases/tag/v2.7.4)
+was inspected as historical evidence. It is a ZIP containing that `.sdPlugin`
+directory as its only top-level directory. Its executable reports assembly
+version `2.7.4.0`, and its manifest, layouts, inspectors, images, and sounds
+correspond to the current source (text differences are Windows line endings). It
+also contains an empty runtime-created `pluginlog.log`, which is not declared by
+the project. This comparison verifies the expected output layout; it is not a
+rebuild of the Windows solution in the current Linux environment.
+
+The repository has no target or script that creates the final
+`.streamDeckPlugin` ZIP. Reproducing that Elgato packaging step is not required
+for the native Linux port; preserving the Windows project and its build payload
+is the relevant compatibility boundary.
+
 The useful behaviour and the platform dependencies are interleaved:
 
 <!-- markdownlint-disable MD013 -->
@@ -234,3 +269,6 @@ that the store accepts the combined repository size and layout. If it does not,
 publish the Linux subtree through a dedicated release repository while keeping
 this repository as the development source. Do not silently move the Windows
 projects merely to satisfy packaging.
+
+This decision concerns StreamController distribution only. It does not require
+adding or reconstructing Elgato `.streamDeckPlugin` archive tooling.

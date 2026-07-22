@@ -41,6 +41,10 @@ Manual paths are the compatibility fallback. Automatic Elgato profile switching
 also does not map directly to StreamController and is tracked as a later page
 switching investigation.
 
+Reproducing the Elgato `.streamDeckPlugin` archive-generation step is outside
+the Linux port's scope. The existing Windows project should remain buildable,
+but the Linux release will use StreamController's native distribution model.
+
 ## StreamController baseline
 
 The design is based on StreamController's current Python plugin model:

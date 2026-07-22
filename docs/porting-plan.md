@@ -182,6 +182,12 @@ Allowed improvements, with tests and documentation:
 Do not silently change action behaviour solely because it is easier to express
 in StreamController. Add a compatibility note and update the matrix.
 
+Reproducing the legacy Elgato `.streamDeckPlugin` archive-generation process is
+explicitly outside parity scope. Keep the Windows solution usable and treat its
+`.sdPlugin` build output and the inspected v2.7.4 release as behavioural and
+asset references; Linux distribution follows StreamController's native store
+and plugin layout.
+
 ## Acceptance scenarios
 
 The following scenarios define the minimum end-to-end coverage:
